@@ -9,4 +9,9 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Catstagram::Application.config.secret_key_base = '536a53161595887e277f800304fde302da8ca18ec9023eae37f9adc180615c1d11476c0e676c74cd07fa088cba17ae939c1e4c5952b8603470b56fe5afcef071'
+
+if Rails.env.development? || Rails.env.test?
+  Catstagram::Application.config.secret_key_base = ('x' * 128)
+else
+  Catstagram::Application.config.secret_key_base = ENV['SECRET_TOKEN']
+end

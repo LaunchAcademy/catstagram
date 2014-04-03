@@ -33,4 +33,9 @@ feature "user adds a post", %q{
 
     expect(page).to have_content "There were some errors with your Post."
   end
+
+  scenario "an unauthenticated user tries to add a new post" do
+    visit new_post_path
+    expect(page).to have_content "You need to sign in or sign up"
+  end
 end

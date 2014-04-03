@@ -34,6 +34,7 @@ end
 
 gem 'devise'
 gem 'simple_form'
+gem 'carrierwave'
 
 group :development, :test do
   gem 'pry-rails'

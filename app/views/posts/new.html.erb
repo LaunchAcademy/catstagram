@@ -1,7 +1,7 @@
 <h1>New Post</h1>
 
 <%= simple_form_for @post do |f| %>
-  <%= f.input :image %>
+  <%= f.input :image, as: :file %>
   <%= f.input :description, as: :text %>
   <%= f.button :submit %>
 <% end %>

@@ -1,9 +1,9 @@
 Catstagram::Application.routes.draw do
-  root 'pages#index'
+  root 'posts#index'
 
   devise_for :users
 
-  resources :posts, only: [:new, :create]
+  resources :posts, only: [:index, :new, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

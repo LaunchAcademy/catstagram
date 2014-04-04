@@ -1,0 +1,6 @@
+<h1>Meow</h1>
+
+<% @posts.each do |post| %>
+  <%= image_tag post.image.url %>
+  <p><%= post.description %></p>
+<% end %>

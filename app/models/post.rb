@@ -2,6 +2,10 @@ class Post < ActiveRecord::Base
   belongs_to :user,
     inverse_of: :posts
 
+  has_many :meows,
+    dependent: :destroy,
+    inverse_of: :post
+
   validates :user, presence: true
   validates :image, presence: true
   validates :description, length: { maximum: 140 }

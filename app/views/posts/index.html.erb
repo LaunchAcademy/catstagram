@@ -2,5 +2,7 @@
 
 <% @posts.each do |post| %>
   <%= image_tag post.image.url %>
+  <%= pluralize(post.meows.count, 'Meow') %>
+  <%= button_to "Meow", post_meows_path(post), method: :post %>
   <p><%= post.description %></p>
 <% end %>

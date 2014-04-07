@@ -4,7 +4,7 @@ Catstagram::Application.routes.draw do
   devise_for :users
 
   resources :posts, only: [:index, :new, :create] do
-    resources :meows, only: [:create]
+    resources :meows, only: [:create, :destroy]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

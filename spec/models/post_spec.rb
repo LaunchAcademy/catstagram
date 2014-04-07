@@ -23,6 +23,27 @@ describe Post do
     end
   end
 
+  describe "#meow_from" do
+    context "User has a Meow for given Post" do
+      it "returns that instance of Meow" do
+        meow = FactoryGirl.create(:meow)
+        post = meow.post
+        user = meow.user
+
+        expect(post.meow_from(user)).to eq meow
+      end
+    end
+
+    context "User doesnt have a Meow for given Post" do
+      it "returns nil" do
+        user = FactoryGirl.create(:user)
+        post = FactoryGirl.create(:post)
+
+        expect(post.meow_from(user)).to eq nil
+      end
+    end
+  end
+
   describe "#has_meow_from?" do
     it "returns true if given user has already created a meow for post" do
       meow = FactoryGirl.create(:meow)

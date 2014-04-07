@@ -3,8 +3,15 @@
 <% @posts.each do |post| %>
   <%= image_tag post.image.url %>
   <%= pluralize(post.meows.count, 'Meow') %>
-  <% unless current_user.nil? || post.has_meow_from?(current_user) %>
-    <%= button_to "Meow", post_meows_path(post), method: :post %>
+
+  <% if user_signed_in? %>
+    <% if post.has_meow_from?(current_user) %>
+      <%= button_to "Remove Meow", post_meow_path(post, post.meow_from(current_user)),
+        method: :delete%>
+    <% else %>
+      <%= button_to "Meow", post_meows_path(post), method: :post %>
+    <% end %>
   <% end %>
+
   <p><%= post.description %></p>
 <% end %>

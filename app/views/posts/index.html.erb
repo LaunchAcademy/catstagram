@@ -1,17 +1,22 @@
 <h1>Meow</h1>
 
 <% @posts.each do |post| %>
-  <%= image_tag post.image.url %>
-  <%= pluralize(post.meows.count, 'Meow') %>
+  <div data-post-id="<%= post.id %>">
+    <%= image_tag post.image.url %>
+    <%= pluralize(post.meows.count, 'Meow') %>
 
-  <% if user_signed_in? %>
-    <% if post.has_meow_from?(current_user) %>
-      <%= button_to "Remove Meow", post_meow_path(post, post.meow_from(current_user)),
-        method: :delete%>
-    <% else %>
-      <%= button_to "Meow", post_meows_path(post), method: :post %>
+    <% if user_signed_in? %>
+      <% if post.has_meow_from?(current_user) %>
+        <%= button_to "Remove Meow", post_meow_path(post, post.meow_from(current_user)),
+          method: :delete,
+          form: { data: { 'meow-button' => 'delete' } } %>
+      <% else %>
+        <%= button_to "Meow", post_meows_path(post),
+          method: :post,
+          form: { data: { 'meow-button' => 'create' } } %>
+      <% end %>
     <% end %>
-  <% end %>
 
-  <p><%= post.description %></p>
+    <p><%= post.description %></p>
+  </div>
 <% end %>
